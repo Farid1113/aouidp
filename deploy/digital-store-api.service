@@ -1,0 +1,21 @@
+[Unit]
+Description=Digital Store Pro FastAPI
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=storeapp
+Group=storeapp
+WorkingDirectory=/opt/digital-store/backend
+EnvironmentFile=/opt/digital-store/backend/.env
+ExecStart=/opt/digital-store/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 2 --proxy-headers --forwarded-allow-ips 127.0.0.1
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/digital-store/backend/private_uploads
+
+[Install]
+WantedBy=multi-user.target

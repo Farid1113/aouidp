@@ -1,0 +1,7 @@
+[build-system]
+requires = ["maturin>=1.9,<2"]
+build-backend = "maturin"
+[project]
+name = "digital-core"
+version = "0.3.0"
+requires-python = ">=3.12"
